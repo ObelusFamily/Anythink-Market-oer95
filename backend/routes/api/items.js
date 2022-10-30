@@ -40,6 +40,11 @@ router.get("/", auth.optional, function(req, res, next) {
   var query = {};
   var limit = 100;
   var offset = 0;
+  var title = "";
+
+  if(typeof req.query.title !== "undefined") {
+    title = req.query.title;
+  }
 
   if (typeof req.query.limit !== "undefined") {
     limit = req.query.limit;
@@ -60,6 +65,10 @@ router.get("/", auth.optional, function(req, res, next) {
     .then(function(results) {
       var seller = results[0];
       var favoriter = results[1];
+
+      if(title) {
+        query.title = new RegExp(title, "i");
+      }
 
       if (seller) {
         query.seller = seller._id;
@@ -90,7 +99,8 @@ router.get("/", auth.optional, function(req, res, next) {
               return item.toJSONFor(user);
             })
           ),
-          itemsCount: itemsCount
+          itemsCount: itemsCount,
+          query: query
         });
       });
     })
