@@ -59,21 +59,3 @@ body {
 .user-info {
   min-width: 800px;
 }
-
-#search-container {
-  display: inline-flex;
-  position: relative;
-  align-items: center;
-  margin: 0 10px;
-}
-
-#search-container .icon {
-  position: absolute;
-  right: 12px;
-}
-
-#search-box {
-  padding: 8px 40px 8px 12px;
-  border: none;
-  border-radius: 5px;
-}
